@@ -289,6 +289,8 @@ contains
 
       ! Set the Profiling timers
       !-------------------------
+      call MAPL_TimerAdd(GC,    name="ADVECTION"  ,RC=STATUS)
+      VERIFY_(STATUS)
       call MAPL_TimerAdd(GC,    name="INITIALIZE"  ,RC=STATUS)
       VERIFY_(STATUS)
       call MAPL_TimerAdd(GC,    name="RUN"         ,RC=STATUS)
@@ -502,6 +504,7 @@ contains
 
       call MAPL_TimerOn(MAPL,"TOTAL")
       call MAPL_TimerOn(MAPL,"INITIALIZE")
+      call MAPL_TimerOn(MAPL,"ADVECTION")
 
       gridCreated=.false.
       call MAPL_GetObjectFromGC (GC, MAPL,  RC=STATUS )
@@ -531,6 +534,7 @@ contains
          temp2d = FV_Atm(1)%gridstruct%area(IS:IE,JS:JE)
       endif
 
+      call MAPL_TimerOff(MAPL,"ADVECTION")
       call MAPL_TimerOff(MAPL,"INITIALIZE")
       call MAPL_TimerOff(MAPL,"TOTAL")
 
@@ -664,6 +668,7 @@ contains
 
       call MAPL_TimerOn(MAPL,"TOTAL")
       call MAPL_TimerOn(MAPL,"RUN")
+      call MAPL_TimerOn(MAPL,"ADVECTION")
 
 ! Get AKs and BKs for vertical grid
 !----------------------------------
@@ -1187,6 +1192,7 @@ contains
          DEALLOCATE( DryPLE1 )
       endif
 
+      call MAPL_TimerOff(MAPL,"ADVECTION")
       call MAPL_TimerOff(MAPL,"RUN")
       call MAPL_TimerOff(MAPL,"TOTAL")
 
