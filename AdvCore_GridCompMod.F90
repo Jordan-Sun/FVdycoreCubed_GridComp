@@ -504,7 +504,7 @@ contains
 
       call MAPL_TimerOn(MAPL,"TOTAL")
       call MAPL_TimerOn(MAPL,"INITIALIZE")
-      call MAPL_TimerOn(MAPL,"HIST")
+      call MAPL_TimerOn(MAPL,"ADVECTION")
 
       gridCreated=.false.
       call MAPL_GetObjectFromGC (GC, MAPL,  RC=STATUS )
@@ -534,7 +534,7 @@ contains
          temp2d = FV_Atm(1)%gridstruct%area(IS:IE,JS:JE)
       endif
 
-      call MAPL_TimerOff(MAPL,"HIST")
+      call MAPL_TimerOff(MAPL,"ADVECTION")
       call MAPL_TimerOff(MAPL,"INITIALIZE")
       call MAPL_TimerOff(MAPL,"TOTAL")
 
@@ -668,7 +668,7 @@ contains
 
       call MAPL_TimerOn(MAPL,"TOTAL")
       call MAPL_TimerOn(MAPL,"RUN")
-      call MAPL_TimerOn(MAPL,"HIST")
+      call MAPL_TimerOn(MAPL,"ADVECTION")
 
 ! Get AKs and BKs for vertical grid
 !----------------------------------
