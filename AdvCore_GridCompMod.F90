@@ -289,7 +289,7 @@ contains
 
       ! Set the Profiling timers
       !-------------------------
-      call MAPL_TimerAdd(GC,    name="DYNAMICS"  ,RC=STATUS)
+      call MAPL_TimerAdd(GC,    name="HIST"  ,RC=STATUS)
       VERIFY_(STATUS)
       call MAPL_TimerAdd(GC,    name="INITIALIZE"  ,RC=STATUS)
       VERIFY_(STATUS)
@@ -504,7 +504,7 @@ contains
 
       call MAPL_TimerOn(MAPL,"TOTAL")
       call MAPL_TimerOn(MAPL,"INITIALIZE")
-      call MAPL_TimerOn(MAPL,"DYNAMICS")
+      call MAPL_TimerOn(MAPL,"HIST")
 
       gridCreated=.false.
       call MAPL_GetObjectFromGC (GC, MAPL,  RC=STATUS )
@@ -534,7 +534,7 @@ contains
          temp2d = FV_Atm(1)%gridstruct%area(IS:IE,JS:JE)
       endif
 
-      call MAPL_TimerOff(MAPL,"DYNAMICS")
+      call MAPL_TimerOff(MAPL,"HIST")
       call MAPL_TimerOff(MAPL,"INITIALIZE")
       call MAPL_TimerOff(MAPL,"TOTAL")
 
@@ -668,7 +668,7 @@ contains
 
       call MAPL_TimerOn(MAPL,"TOTAL")
       call MAPL_TimerOn(MAPL,"RUN")
-      call MAPL_TimerOn(MAPL,"DYNAMICS")
+      call MAPL_TimerOn(MAPL,"HIST")
 
 ! Get AKs and BKs for vertical grid
 !----------------------------------
@@ -1192,7 +1192,7 @@ contains
          DEALLOCATE( DryPLE1 )
       endif
 
-      call MAPL_TimerOff(MAPL,"DYNAMICS")
+      call MAPL_TimerOff(MAPL,"HIST")
       call MAPL_TimerOff(MAPL,"RUN")
       call MAPL_TimerOff(MAPL,"TOTAL")
 
